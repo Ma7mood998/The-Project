@@ -12,7 +12,7 @@
 <body>
     <main class="container">
         <h1>Available Rooms</h1>
-        <section id="rooms-container" class="grid">
+        <section id="rooms-container" class="flex">
             <!-- Room cards will be dynamically inserted here -->
         </section>
     </main>
