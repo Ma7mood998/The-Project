@@ -1,10 +1,11 @@
-// JavaScript for Room Browsing Page (rooms.php)
+// JavaScript code for the room browsing page (rooms.php)
 
-// Select container to add room cards
+
+// event listener to select "rooms-container" to add room cards
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("rooms-container");
 
-    // Fetch ONLY available rooms from (fetch_rooms.php)
+    // Use (fetch_rooms.php) to fetch ONLY available rooms
     fetch("fetch_rooms.php")
         .then(response => response.json())
         .then(data => {

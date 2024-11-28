@@ -23,12 +23,20 @@ $username = $_SESSION['first_name']; // For personalized messages
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
 >
+<link rel="stylesheet" href="styles.css">
+<script src="theme.js"></script>
+<script src="rooms.js"></script>
 </head>
 <body>
     <header>
         <!-- Personal welcome message for each user -->
     <h1>Welcome, <?= htmlspecialchars($_SESSION['first_name']); ?>!</h1>
     <nav>
+    <label for="theme-toggle">
+        <input type="checkbox" id="theme-toggle">
+        Dark Mode
+    </label>
+        <a href="rooms.php">Home</a>
         <!-- link to my_bookings.php to see all bookings the current user has booked -->
         <a href="my_bookings.php">My Bookings</a>
         <a href="logout.php" class="button">Logout</a>
@@ -42,6 +50,6 @@ $username = $_SESSION['first_name']; // For personalized messages
     </main>
 
     <!-- Link to external JavaScript (rooms.js) for the id="room-container" -->
-    <script src="rooms.js"></script>
 </body>
 </html>
+

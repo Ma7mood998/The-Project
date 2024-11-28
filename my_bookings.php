@@ -43,8 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
 >
+<link rel="stylesheet" href="styles.css">
+<script src="theme.js"></script>
 </head>
 <body>
+<header>
+        <nav>
+        <label for="theme-toggle">
+        <input type="checkbox" id="theme-toggle">
+        Dark Mode
+    </label>
+        </nav>
+    </header>
     <h1>My Bookings</h1>
     <?php if (empty($bookings)): ?>
         <p>No bookings found.</p>
