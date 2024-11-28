@@ -2,13 +2,13 @@
 session_start();
 require_once 'db.php';
 
-// Redirect if not logged in
+// Redirect if the user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Get user information from the session
+// Get user information from the session we opened in login
 $user_role = $_SESSION['role']; // 'user' or 'admin'
 $username = $_SESSION['first_name']; // For personalized messages
 ?>
@@ -26,19 +26,22 @@ $username = $_SESSION['first_name']; // For personalized messages
 </head>
 <body>
     <header>
-        <h1>Welcome, <?= htmlspecialchars($username); ?>!</h1>
-        <nav>
-            <a href="logout.php" class="button">Logout</a>
-        </nav>
+        <!-- Personal welcome message for each user -->
+    <h1>Welcome, <?= htmlspecialchars($_SESSION['first_name']); ?>!</h1>
+    <nav>
+        <!-- link to my_bookings.php to see all bookings the current user has booked -->
+        <a href="my_bookings.php">My Bookings</a>
+        <a href="logout.php" class="button">Logout</a>
+    </nav>
     </header>
     <main class="container">
         <h1>Available Rooms</h1>
         <section id="rooms-container" class="flex">
-            <!-- Room cards will be dynamically inserted here -->
+            <!-- Room cards will be dynamically inserted here by javascript (rooms.js) -->
         </section>
     </main>
 
-    <!-- Link to external JavaScript -->
+    <!-- Link to external JavaScript (rooms.js) for the id="room-container" -->
     <script src="rooms.js"></script>
 </body>
 </html>
