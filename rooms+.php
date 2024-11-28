@@ -11,20 +11,22 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Details</title>
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
->
-<link rel="stylesheet" href="styles.css">
-<script src="theme.js"></script> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
+    <script src="rooms+.js"></script>
 </head>
 <body>
     <header>
         <nav>
-        <label for="theme-toggle">
-        <input type="checkbox" id="theme-toggle">
-        Dark Mode
-    </label>
+            <label for="theme-toggle">
+            <input type="checkbox" id="theme-toggle">
+            Dark Mode
+            </label>
+            <ul>
+                <li><a href="rooms.php">Back to Rooms</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
         </nav>
     </header>
     <main class="container">
@@ -37,6 +39,8 @@ if (!isset($_SESSION['user_id'])) {
             <!-- Schedule and booking form will be dynamically inserted here -->
         </section>
     </main>
-    <script src="rooms+.js"></script>
+    <footer class="container">
+        <p>&copy; <?= date("Y"); ?> Room Booking System</p>
+    </footer>
 </body>
 </html>

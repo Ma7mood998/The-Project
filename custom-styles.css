@@ -1,0 +1,61 @@
+/* Room Cards */
+#rooms-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.room-card {
+    padding: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.room-card:hover {
+    transform: scale(1.05);
+}
+
+.room-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.room-card h2 {
+    margin-bottom: 0.5rem;
+}
+
+.room-card p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Navigation */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Dark Mode Transition */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+

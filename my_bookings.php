@@ -39,38 +39,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Bookings</title>
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
->
-<link rel="stylesheet" href="styles.css">
-<script src="theme.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="theme.js"></script>
 </head>
 <body>
-<header>
-        <nav>
+<header class="container">
+    <nav>
         <label for="theme-toggle">
         <input type="checkbox" id="theme-toggle">
         Dark Mode
-    </label>
-        </nav>
-    </header>
-    <h1>My Bookings</h1>
-    <?php if (empty($bookings)): ?>
-        <p>No bookings found.</p>
-    <?php else: ?>
+        </label>
         <ul>
-            <?php foreach ($bookings as $booking): ?>
-                <li>
-                    Room: <?= htmlspecialchars($booking['room_name']) ?>
-                    Time: <?= htmlspecialchars($booking['available_from']) ?> to <?= htmlspecialchars($booking['available_to']) ?>
-                    <form method="POST" action="my_bookings.php" style="display:inline;">
-                        <input type="hidden" name="booking_id" value="<?= $booking['booking_id'] ?>">
-                        <button type="submit">Cancel</button>
-                    </form>
-                </li>
-            <?php endforeach; ?>
+            <li><a href="rooms.php">Home</a></li>
+            <li><a href="logout.php">Logout</a></li>
         </ul>
-    <?php endif; ?>
+    </nav>
+    </header>
+    <main class="container">
+        <h2>My Bookings</h2>
+        <?php if (empty($bookings)): ?>
+            <p>No bookings found.</p>
+        <?php else: ?>
+            <ul>
+                <?php foreach ($bookings as $booking): ?>
+                    <li>
+                        Room: <?= htmlspecialchars($booking['room_name']) ?>
+                        Time: <?= htmlspecialchars($booking['available_from']) ?> to <?= htmlspecialchars($booking['available_to']) ?>
+                        <form method="POST" action="my_bookings.php" style="display:inline;">
+                            <input type="hidden" name="booking_id" value="<?= $booking['booking_id'] ?>">
+                            <button type="submit">Cancel</button>
+                        </form>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php endif; ?>
+    </main>
+    <footer class="container">
+        <p>&copy; <?= date("Y"); ?> Room Booking System</p>
+    </footer>
 </body>
 </html>
