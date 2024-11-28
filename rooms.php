@@ -23,7 +23,7 @@ $username = $_SESSION['first_name']; // For personalized messages
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="custom-styles.css">
     <script src="theme.js"></script>
-    <script src="rooms.js"></script>
+    <script src="rooms.js" defer></script>
 </head>
 <body>
     <header class="container">
@@ -46,8 +46,28 @@ $username = $_SESSION['first_name']; // For personalized messages
     </header>
     <main class="container">
         <h1>Browse Rooms</h1>
+
+        <!-- Dropdown Menu -->
+        <form id="filter-form">
+            <label for="filter-availability">Availability:</label>
+            <select id="filter-availability" name="availability">
+                <option value="all">All</option>
+                <option value="available">Available</option>
+                <option value="unavailable">Unavailable</option>
+            </select>
+
+            <label for="filter-capacity">Capacity:</label>
+            <select id="filter-capacity" name="capacity">
+                <option value="all">All</option>
+                <option value="gt30">Capacity > 30</option>
+            </select>
+
+            <button type="submit">Apply Filters</button>
+        </form>
+
+        <!-- Rooms Container -->
         <section id="rooms-container" class="flex">
-            <!-- Room cards will be dynamically inserted here by javascript (rooms.js) -->
+            <!-- Room cards will be dynamically inserted here -->
         </section>
     </main>
     <footer class="container">

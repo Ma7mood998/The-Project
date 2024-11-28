@@ -1,19 +1,45 @@
 <?php
-
 require_once 'db.php';
 
+// Initialize query
+$query = "SELECT rooms.room_id, rooms.room_name, rooms.capacity, 
+                 rooms.equipment, rooms.available,
+                 (CASE 
+                    WHEN rooms.available = 1 THEN 'available'
+                    ELSE 'unavailable' 
+                 END) AS status
+          FROM rooms";
+
+// Add filters dynamically
+$filters = [];
+if (isset($_GET['availability']) && $_GET['availability'] !== 'all') {
+    $availability = $_GET['availability'];
+    if ($availability === 'available') {
+        $filters[] = "rooms.available = 1";
+    } elseif ($availability === 'unavailable') {
+        $filters[] = "rooms.available = 0";
+    }
+}
+
+if (isset($_GET['capacity']) && $_GET['capacity'] === 'gt30') {
+    $filters[] = "rooms.capacity > 30";
+}
+
+// Append filters to query if any
+if (!empty($filters)) {
+    $query .= " WHERE " . implode(' AND ', $filters);
+}
+
+// Execute the query
 try {
-    
-    $query = "SELECT room_id, room_name, capacity, equipment FROM rooms WHERE available = 1";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
-    
-    $rooms = $stmt->fetchAll();
+    $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    header('Content-Type: application/json');
+    // Return rooms as JSON
     echo json_encode($rooms);
 } catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(["error" => $e->getMessage()]);
+    // Handle query errors
+    echo json_encode(['error' => $e->getMessage()]);
 }
 ?>
