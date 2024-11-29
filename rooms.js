@@ -1,22 +1,18 @@
-// JavaScript code for the room browsing page (rooms.php)
-
-// Event listener to select "rooms-container" and add room cards
 document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("rooms-container");
     const filterForm = document.getElementById("filter-form");
     const availabilitySelect = document.getElementById("filter-availability");
     const capacitySelect = document.getElementById("filter-capacity");
+    const searchInput = document.getElementById("search-room");
 
     // Function to fetch rooms based on filters
     function fetchRooms(filters = {}) {
-        // Build query string from filters
         const params = new URLSearchParams(filters).toString();
-        
-        // Fetch data from fetch_rooms.php with applied filters
+
         fetch(`fetch_rooms.php?${params}`)
             .then(response => response.json())
             .then(data => {
-                container.innerHTML = "";  // Clear previous content
+                container.innerHTML = ""; // Clear previous content
                 if (data.length === 0) {
                     container.innerHTML = "<p>No rooms found based on the selected filters.</p>";
                 } else {
@@ -51,7 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Get filter values
         const filters = {
             availability: availabilitySelect.value,
-            capacity: capacitySelect.value
+            capacity: capacitySelect.value,
+            room_name: searchInput.value.trim()
         };
 
         // Fetch filtered rooms

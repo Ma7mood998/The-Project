@@ -25,6 +25,11 @@ if (isset($_GET['capacity']) && $_GET['capacity'] === 'gt30') {
     $filters[] = "rooms.capacity > 30";
 }
 
+if (isset($_GET['room_name']) && !empty(trim($_GET['room_name']))) {
+    $room_name = "%" . trim($_GET['room_name']) . "%";
+    $filters[] = "rooms.room_name LIKE :room_name";
+}
+
 // Append filters to query if any
 if (!empty($filters)) {
     $query .= " WHERE " . implode(' AND ', $filters);
@@ -33,6 +38,12 @@ if (!empty($filters)) {
 // Execute the query
 try {
     $stmt = $pdo->prepare($query);
+
+    // Bind search parameter if present
+    if (isset($room_name)) {
+        $stmt->bindParam(':room_name', $room_name, PDO::PARAM_STR);
+    }
+
     $stmt->execute();
     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

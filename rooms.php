@@ -61,7 +61,9 @@ $username = $_SESSION['first_name']; // For personalized messages
                 <option value="all">All</option>
                 <option value="gt30">Capacity > 30</option>
             </select>
-
+            <!-- Search Input -->
+        <label for="search-room">Search Room:</label>
+        <input type="text" id="search-room" name="room_name" placeholder="Enter room name" />
             <button type="submit">Apply Filters</button>
         </form>
 
