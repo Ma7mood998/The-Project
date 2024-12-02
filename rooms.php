@@ -21,7 +21,7 @@ $username = $_SESSION['first_name']; // For personalized messages
     <title>Available Rooms</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="custom-styles.css">
+    <link rel="stylesheet" href="rooms_styles.css">
     <script src="theme.js"></script>
     <script src="rooms.js" defer></script>
 </head>
