@@ -62,18 +62,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (empty($bookings)): ?>
             <p>No bookings found.</p>
         <?php else: ?>
+            
             <ul>
+            
                 <?php foreach ($bookings as $booking): ?>
-                    <li>
+                    <article class="mybookings">
+            
                         Room: <?= htmlspecialchars($booking['room_name']) ?>
                         Time: <?= htmlspecialchars($booking['available_from']) ?> to <?= htmlspecialchars($booking['available_to']) ?>
                         <form method="POST" action="my_bookings.php" style="display:inline;">
                             <input type="hidden" name="booking_id" value="<?= $booking['booking_id'] ?>">
                             <button type="submit">Cancel</button>
                         </form>
-                    </li>
+                    
+                    </article>
                 <?php endforeach; ?>
+                
             </ul>
+                
         <?php endif; ?>
     </main>
     <footer class="container">

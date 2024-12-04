@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['room_id'])) {
     }
 
     // Fetch room details and schedules
-    $query = "SELECT r.room_name, r.capacity, r.equipment, rs.schedule_id, rs.available_from, rs.available_to, rs.status
+    $query = "SELECT r.room_name, r.capacity, r.equipment, r.floor, r.department, rs.schedule_id, rs.available_from, rs.available_to, rs.status
               FROM rooms r
               JOIN room_schedules rs ON r.room_id = rs.room_id
               WHERE r.room_id = :room_id";
@@ -36,6 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['room_id'])) {
         'room_name' => $roomDetails[0]['room_name'],
         'capacity' => $roomDetails[0]['capacity'],
         'equipment' => $roomDetails[0]['equipment'],
+        'floor' => $roomDetails[0]['floor'],
+        'department' => $roomDetails[0]['department'],
         'schedule' => []
     ];
 

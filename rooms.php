@@ -61,10 +61,27 @@ $username = $_SESSION['first_name']; // For personalized messages
                 <option value="all">All</option>
                 <option value="gt30">Capacity > 30</option>
             </select>
+
+            <label for="filter-floor">Floor:</label>
+            <select id="filter-floor" name="floor">
+                <option value="all">All</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+
+            <label for="filter-department">Department:</label>
+            <select id="filter-department" name="department">
+                <option value="all">All</option>
+                <option value="information systems">Information Systems</option>
+                <option value="computer science">Computer Science</option>
+                <option value="computer engineering">Computer Engineering</option>
+            </select>
             <!-- Search Input -->
         <label for="search-room">Search Room:</label>
         <input type="text" id="search-room" name="room_name" placeholder="Enter room name" />
             <button type="submit">Apply Filters</button>
+            <button type="button" id="reset-filters" class="secondary">Reset Filters</button>
         </form>
 
         <!-- Rooms Container -->

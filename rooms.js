@@ -4,10 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const availabilitySelect = document.getElementById("filter-availability");
     const capacitySelect = document.getElementById("filter-capacity");
     const searchInput = document.getElementById("search-room");
+    const floorSelect = document.getElementById("filter-floor");
+    const departmentSelect = document.getElementById("filter-department");
 
     // Function to fetch rooms based on filters
     function fetchRooms(filters = {}) {
         const params = new URLSearchParams(filters).toString();
+
+        // Display loading message
+        container.innerHTML = "<p>Loading rooms...</p>";
 
         fetch(`fetch_rooms.php?${params}`)
             .then(response => response.json())
@@ -24,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         card.innerHTML = `
                             <h2>${room.room_name}</h2>
                             <p>Capacity: ${room.capacity}</p>
+                            <p>Floor: ${room.floor}</p>
+                            <p>Department: ${room.department}</p>
                             <p>Equipment: ${room.equipment}</p>
                             <a href="rooms+.php?room_id=${room.room_id}" class="button">View Details</a>
                         `;
@@ -38,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Fetch rooms by default (showing all available rooms)
-    fetchRooms({ availability: "available", capacity: "all" });
+    fetchRooms({ availability: "available", capacity: "all", floor: "all", department: "all" });
 
     // Handle filter form submission
     filterForm.addEventListener("submit", function (event) {
@@ -46,12 +53,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Get filter values
         const filters = {
-            availability: availabilitySelect.value,
-            capacity: capacitySelect.value,
-            room_name: searchInput.value.trim()
+            availability: availabilitySelect.value || "all",
+            capacity: capacitySelect.value || "all",
+            floor: floorSelect.value || "all",
+            department: departmentSelect.value || "all",
+            room_name: searchInput.value.trim() || ""
         };
 
         // Fetch filtered rooms
         fetchRooms(filters);
+        
+    });
+
+    document.getElementById("reset-filters").addEventListener("click", () => {
+        filterForm.reset(); // Reset form fields
+        fetchRooms({ availability: "available", capacity: "all", floor: "all", department: "all" }); // Default fetch
     });
 });

@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h2>${data.room_name}</h2>
                 <p>Capacity: ${data.capacity}</p>
                 <p>Equipment: ${data.equipment}</p>
+                <p>Floor: ${data.floor}</p>
+                <p>Department: ${data.department}</p>
             `;
 
             // Populate schedules
