@@ -16,7 +16,7 @@ if (!isset($_SESSION['user_id'])) {
     <title>Room Details</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="rooms+_style.css">
     <script src="theme.js"></script>
     <script src="rooms+.js"></script>
