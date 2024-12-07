@@ -30,6 +30,7 @@ $username = $_SESSION['first_name']; // For welcome message
         <script src="theme.js"></script>
         <!-- Link for room info/cards JavaScript -->
         <script src="rooms.js"></script>
+        <script src="modal.js"></script>
     </head>
     <body>
 
@@ -98,6 +99,17 @@ $username = $_SESSION['first_name']; // For welcome message
                     <!-- Rooms info/cards will inserted here dynamically -->
             </section>
         </main>
+
+        <!-- Modal Popup -->
+        <div id="popupOverlay" class="hidden">
+            <div id="popupContent">
+                <span id="closePopup">&times;</span>
+                <div id="popupBody">
+                    <!-- Content from modal.js will be loaded dynamically here -->
+                </div>
+            </div>
+        </div>
+
 
         <!-- Footer with contact info -->
         <footer id="contact">

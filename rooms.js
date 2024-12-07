@@ -9,6 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const floorSelect = document.getElementById("filter-floor");
     const departmentSelect = document.getElementById("filter-department");
 
+    // Modal elements
+    const popupOverlay = document.getElementById("popupOverlay");
+    const popupBody = document.getElementById("popupBody");
+    const closePopup = document.getElementById("closePopup");
+
     // Function to fetch rooms based on filters
     // Here we use AJAX to display room info in (rooms.php)
 
@@ -49,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p>Floor: ${room.floor}</p>
                         <p>Department: ${room.department}</p>
                         <p>Equipment: ${room.equipment}</p>
-                        <a href="rooms+.php?room_id=${room.room_id}" class="button">View Details</a>
-                    `;
+                        <button class="button view-details" data-room-id="${room.room_id}">View Details</button>                    `;
                     container.appendChild(card);
                 });
             }
@@ -87,4 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         filterForm.reset(); // Reset form fields
         fetchRooms({ availability: "available", capacity: "all", floor: "all", department: "all" });
     });
+    
 });
+
+    
