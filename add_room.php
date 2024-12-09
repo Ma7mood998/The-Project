@@ -1,5 +1,4 @@
 <?php
-//Error Reporting
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
@@ -11,10 +10,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');
     exit;
 }
-//retrieves first name from the session if it is not set it defaults to Admin
+
 $firstName = $_SESSION['first_name'] ?? 'Admin';
 
-require_once 'db.php'; // Ensure this file establishes a $pdo connection
+require_once 'db.php'; 
 
 $message = ''; // Feedback message
 
@@ -55,59 +54,74 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 }
 
 // Handle form submission
-//Retrieving and Sanitizing Input Data
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $room_name = trim($_POST['room_name']); //Removes any whitespace
-    $capacity = intval($_POST['capacity']);//Converts the capacity input to an integer to  ensuring that the value is numeric
+    $room_name = trim($_POST['room_name']);
+    $capacity = intval($_POST['capacity']);
     $equipment = trim($_POST['equipment']);
-    $available = isset($_POST['available']) ? 1 : 0;  //Checks if the 'available' checkbox was checked it sets to 1  otherwise, it sets it to 0 
+    $available = isset($_POST['available']) ? 1 : 0; 
     $floor = trim($_POST['floor']);
     $department = trim($_POST['department']);
 
     if (!empty($room_name) && $capacity > 0 && !empty($floor) && !empty($department)) {
-        //If all these conditions are met do the followig (edit or add)
         try {
+            // Check for duplicate room names
+            $checkSql = "SELECT room_id FROM rooms WHERE room_name = :room_name";
             if ($room_id) {
-                // Update the room if ID exists
-                $sql = "UPDATE rooms 
-                        SET room_name = :room_name, 
-                            capacity = :capacity, 
-                            equipment = :equipment, 
-                            available = :available, 
-                            floor = :floor, 
-                            department = :department 
-                        WHERE room_id = :room_id";
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
-            } else {
-                // Insert a new room
-                $sql = "INSERT INTO rooms (room_name, capacity, equipment, available, floor, department) 
-                        VALUES (:room_name, :capacity, :equipment, :available, :floor, :department)";
-                $stmt = $pdo->prepare($sql);
+                $checkSql .= " AND room_id != :room_id"; // Exclude current room in case of update
             }
-
-            // Bind common parameters
+            $stmt = $pdo->prepare($checkSql);
             $stmt->bindParam(':room_name', $room_name);
-            $stmt->bindParam(':capacity', $capacity);
-            $stmt->bindParam(':equipment', $equipment);
-            $stmt->bindParam(':available', $available, PDO::PARAM_INT);
-            $stmt->bindParam(':floor', $floor);
-            $stmt->bindParam(':department', $department);
+            if ($room_id) {
+                $stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
+            }
+            $stmt->execute();
+            $existingRoom = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            //executes ,Success and Failure Messages
-            if ($stmt->execute()) {
-                $message = $room_id ? "Room updated successfully!" : "Room added successfully!";
+            if ($existingRoom) {
+                $message = "A room with this name already exists. Please choose a different name.";
             } else {
-                $message = $room_id ? "Failed to update the room." : "Failed to add the room.";
+                // Proceed with insert or update
+                if ($room_id) {
+                    // Update the room if ID exists
+                    $sql = "UPDATE rooms 
+                            SET room_name = :room_name, 
+                                capacity = :capacity, 
+                                equipment = :equipment, 
+                                available = :available, 
+                                floor = :floor, 
+                                department = :department 
+                            WHERE room_id = :room_id";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':room_id', $room_id, PDO::PARAM_INT);
+                } else {
+                    // Insert a new room
+                    $sql = "INSERT INTO rooms (room_name, capacity, equipment, available, floor, department) 
+                            VALUES (:room_name, :capacity, :equipment, :available, :floor, :department)";
+                    $stmt = $pdo->prepare($sql);
+                }
+
+                // Bind common parameters
+                $stmt->bindParam(':room_name', $room_name);
+                $stmt->bindParam(':capacity', $capacity);
+                $stmt->bindParam(':equipment', $equipment);
+                $stmt->bindParam(':available', $available, PDO::PARAM_INT);
+                $stmt->bindParam(':floor', $floor);
+                $stmt->bindParam(':department', $department);
+
+                if ($stmt->execute()) {
+                    $message = $room_id ? "Room updated successfully!" : "Room added successfully!";
+                } else {
+                    $message = $room_id ? "Failed to update the room." : "Failed to add the room.";
+                }
             }
         } catch (PDOException $e) {
             $message = "Error: " . $e->getMessage();
         }
-        // input validation fails
     } else {
         $message = "Please fill in all required fields.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -202,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
    <?php
-   require_once('navbar.php');
+   require_once('navbar.php')
    ?>
     <div class="container mt-4">
         <div class="row">
