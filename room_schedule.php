@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php'; // Include database connection
+require_once 'db.php';  
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -118,12 +118,16 @@ if (isset($_GET['delete_id'])) {
     </style>
 <body>
 <?php
-   require_once('navbar.php')
+   require_once('navbar.php');
    ?>
 <div class="container mt-4">
     <h2>Room Schedule Viewer</h2>
     <?php if (!empty($message)): ?>
-        <div class="alert alert-info"><?php echo htmlspecialchars($message); ?></div>
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <?php echo htmlspecialchars($message); ?>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    </div>
     <?php endif; ?>
 
     <!-- Schedule Table -->
@@ -145,6 +149,7 @@ if (isset($_GET['delete_id'])) {
                 <td><?php echo htmlspecialchars($schedule['available_to']); ?></td>
                 <td><?php echo htmlspecialchars($schedule['status']); ?></td>
                 <td>
+                    <a href="add_schedule.php?room_id=<?php echo $room_id; ?>&edit_id=<?php echo $schedule['schedule_id']; ?>" class="btn btn-sm btn-warning">Edit</a>
                     <a href="?room_id=<?php echo $room_id; ?>&delete_id=<?php echo $schedule['schedule_id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                 </td>
             </tr>
