@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'db.php'; // Include database connection
+require_once 'db.php'; 
+
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -121,7 +122,7 @@ foreach ($scheduleData as $data) {
 <?php require_once('navbar.php'); ?>
 <div class="container my-5 ">
     <h2>Reporting and Analytics</h2>
-    <p>schedule statistics (Available and Empty Rooms).</p>
+    <p>Available and Empty Rooms</p>
 
     <!-- Chart Container -->
     <div class="card mt-4 ">
@@ -191,4 +192,6 @@ foreach ($scheduleData as $data) {
 
 </body>
 </html>
+
+
 
