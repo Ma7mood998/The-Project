@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php';; // Include your PDO database connection file
+require_once 'db.php';  
 
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -12,7 +12,7 @@ $firstName = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'User';
 
 try {
     // Fetch all rooms from the database using PDO
-    $stmt = $pdo->prepare("SELECT * FROM rooms"); // Replace `rooms` with your table name
+    $stmt = $pdo->prepare("SELECT * FROM rooms"); 
     $stmt->execute();
     $rooms = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -21,8 +21,8 @@ try {
         $deleteId = $_GET['delete_id'];
 
         // Prepare and execute delete query
-        $deleteStmt = $pdo->prepare("DELETE FROM rooms WHERE id = :id");
-        $deleteStmt->bindParam(':id', $deleteId, PDO::PARAM_INT);
+        $deleteStmt = $pdo->prepare("DELETE FROM rooms WHERE room_id = :room_id");
+        $deleteStmt->bindParam(':room_id', $deleteId, PDO::PARAM_INT);
         $deleteStmt->execute();
 
         // Redirect back to the same page to refresh the room list
@@ -127,7 +127,7 @@ try {
 </head>
 <body>
     <?php
-   require_once('navbar.php');
+   require_once('navbar.php')
    ?>
 
     <div class="container mt-4">
@@ -157,10 +157,11 @@ try {
                             <td><?php echo htmlspecialchars($room['floor']); ?></td>
                             <td><?php echo htmlspecialchars($room['available']); ?></td>
                             <td>
-                                <a href="room_schedule.php?room_id=<?php echo $room['room_id']; ?>" class="me-3 btn btn-info">Schedule</a>
-                                <a href="add_room.php?id=<?php echo $room['room_id']; ?>" class="btn btn-primary">Edit</a>
+                                <a href="room_schedule.php?room_id=<?php echo $room['room_id']; ?>" class="ms-3 btn btn-info">Schedule</a>
+                                <a href="add_schedule.php?room_id=<?php echo $room['room_id']; ?>" class=" btn btn-primary">Add Schedule </a> <br>
+                                <a href="add_room.php?id=<?php echo $room['room_id']; ?>" class="btn mt-3   btn-warning">Edit</a>
                                 <!-- Delete button will pass the room ID via GET parameter 'delete_id' -->
-                                <a href="room.php?delete_id=<?php echo $room['room_id']; ?>" class="ms-3 btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete</a>
+                                <a href="room.php?delete_id=<?php echo $room['room_id']; ?>" class="ms-3 mt-3 btn btn-danger" onclick="return confirm('Are you sure you want to delete this room?');">Delete</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
