@@ -1,0 +1,27 @@
+.mybookings {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    transition: transform 0.3s ease;
+}
+
+.mybookings:hover {
+    transform: scale(1.05);
+}
+
+button.cancel-booking {
+    margin-top: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button.cancel-booking:hover {
+    background-color: var(--secondary-color);
+}

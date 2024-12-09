@@ -1,0 +1,27 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #0056b3;
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --dark-background: #121212;
+    --dark-text: #ffffff;
+    --modal-background: #ffffff;
+    --modal-text: #000000;
+    --dark-modal-background: #2c2c2c;
+    --dark-modal-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --background-color: var(--dark-background);
+    --text-color: var(--dark-text);
+    --modal-background: var(--dark-modal-background);
+    --modal-text: var(--dark-modal-text);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+

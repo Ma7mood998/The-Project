@@ -1,0 +1,166 @@
+#rooms-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.room-card {
+    padding: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 8px;
+    background-color: var(--background-color);
+    transition: transform 0.3s ease;
+}
+
+.room-card:hover {
+    transform: scale(1.05);
+}
+
+/* Modal Overlay */
+#popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    z-index: 1000;
+}
+
+/* Modal Overlay */
+#popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+/* Show modal */
+#popupOverlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Modal Content */
+#popupContent {
+    background-color: var(--modal-background);
+    color: var(--modal-text);
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    max-height: 80%;
+}
+
+/* Close Button */
+#closePopup {
+    position: absolute;
+    top: 1px;
+    right: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* Modal Title (Room Name) */
+#popupContent h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Room Details */
+#popupContent p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+#popupContent p span {
+    font-weight: bold;
+}
+
+/* Schedule Section */
+#popupContent h3 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Schedule Radio Buttons */
+#popupContent .schedule-item {
+    margin-bottom: 10px;
+}
+
+#popupContent input[type="radio"] {
+    margin-right: 10px;
+}
+
+#popupContent label {
+    font-size: 16px;
+}
+
+/* Book Now Button */
+#popupContent button[type="submit"] {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#popupContent button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #popupContent {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    #popupContent h2 {
+        font-size: 22px;
+    }
+    
+    #popupContent p {
+        font-size: 14px;
+    }
+    
+    #popupContent h3 {
+        font-size: 18px;
+    }
+    
+    #popupContent button[type="submit"] {
+        font-size: 14px;
+    }
+}
+
+
