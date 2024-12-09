@@ -1,20 +1,19 @@
 <?php
-//Error Reporting
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 session_start();
-//checks if the user is set in the session if not redirected to the login 
+
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
 
-$role = $_SESSION['role']; //store the user  role  todetermine what permissions
+$role = $_SESSION['role'];
 
 $firstName = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'User';
-//
+
 if (!isset($_SESSION['welcome_shown'])) {
     $_SESSION['welcome_shown'] = true; // Set the flag that the modal has been shown
     $showWelcomeModal = true;
