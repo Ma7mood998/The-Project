@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once 'db.php'; // Include database connection
-
+require_once 'db.php'; 
 //checks if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
@@ -12,8 +11,7 @@ $role = $_SESSION['role'];
 $firstName = isset($_SESSION['first_name']) ? $_SESSION['first_name'] : 'User';
 
 // Fetch total schedule data for each month
-
-$monthlyData = [];//array to store the results of the query.
+$monthlyData = [];
 try {
     // Query to get total schedule counts per month
     $stmt = $pdo->prepare("
@@ -33,8 +31,8 @@ try {
 
 // Convert data for JavaScript
 $allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-$months = []; //array  to store the names of the months that have schedule data
-$totalSchedules = array_fill(0, 12, 0); // Initialize all months with 0,with the index corresponding to the month 
+$months = [];//array  to store the names of the months that have schedule data
+$totalSchedules = array_fill(0, 12, 0);// Initialize all months with 0,with the index corresponding to the month 
 
 // Fill data with actual values
 //contains the actual schedule counts for specific months 
@@ -42,7 +40,7 @@ foreach ($monthlyData as $data) {
     $monthIndex = array_search($data['month'], $allMonths); // this function is  to find the index of the month name in the $allMonths array
     //checks if the month was found in $allMonths array
     if ($monthIndex !== false) {
-        $months[] = $data['month']; // add  Month name to $months 
+        $months[] = $data['month']; // add  Month name to $months
         $totalSchedules[$monthIndex] = $data['total_schedules']; // Total schedules for that month
     }
 }
@@ -128,13 +126,13 @@ $months = $allMonths; // Show all months on the x-axis of a chart  even if some 
 <?php require_once('navbar.php'); ?>
 <div class="container my-5">
     <h2>Total Schedules per Month</h2>
-    <p> Empty bars represent months with no data.</p>
+    <p>Empty bars represent months with no data..</p>
 
-    <!-- Chart Container <canvas>  -->
+    <!-- Chart Container -->
     <div class="card mt-4">
         <div class="card-body">
             <h5 class="card-title">Monthly Total Schedules</h5>
-            <canvas id="monthlyScheduleChart" width="500" height="200"></canvas> 
+            <canvas id="monthlyScheduleChart" width="500" height="200"></canvas>
         </div>
     </div>
 </div>
@@ -143,8 +141,9 @@ $months = $allMonths; // Show all months on the x-axis of a chart  even if some 
     // Pass PHP data to JavaScript 
     //using json_encode() function to convert the PHP arrays $months and $totalSchedules into JSON format
 
-    const months = <?php echo json_encode($months); ?>; //contain an array of month names
+    const months = <?php echo json_encode($months); ?>;//contain an array of month names
     const totalSchedules = <?php echo json_encode($totalSchedules); ?>;//contain an array of total schedules to each month 
+
 
     // Calculate the maximum schedule count to set as the Y-axis max
     const maxSchedule = Math.max(...totalSchedules); // (...)Find the highest value in the data
