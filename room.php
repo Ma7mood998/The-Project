@@ -43,19 +43,30 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Management</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Link for icons in nav -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         nav {
-            background-color: #333;
+            height: 90px;
+            padding: 20px;
+            background-color: #708090;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between; /* Distribute links and dropdown */
             align-items: center;
         }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            color: white;
+        }
         .nav-links {
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 20px; /* Space between links */
         }
         .nav-links a {
             color: white;
@@ -86,7 +97,7 @@ try {
             display: none;
             position: absolute;
             right: 0;
-            background-color: #333;
+            background-color: #708090;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
@@ -125,8 +136,8 @@ try {
         }
         /* Logo Styling */
         .logo-img {
-            height: 50px;
-            width: 50px;
+            height: 60px;
+            width: 70px;
             border-radius: 50%;
             border: 2px solid white;
             cursor: pointer;
@@ -148,28 +159,28 @@ try {
 </head>
 <body>
     <!-- Nav Bar -->
-<nav >
+    <nav>
         <div class="nav-links">
         <a href="admin.php" style="float: left;">
             <img src="uploads/rbook.jpg" alt="Site Logo" class="logo-img">
         </a>
-            <label for="theme-toggle">
+        <div class="checkbox-container">
                 <input type="checkbox" id="theme-toggle">
-                Dark Mode
-            </label>
-            <a href="my_bookings.php">My Bookings</a>
+                <label for="theme-toggle" class="fas fa-moon" id="darkmode">Dark Mode</label>
+            </div>
+            <a href="my_bookings.php" class="fas fa-calendar-check">My Bookings</a>
             <?php if ($role === 'admin'): ?>
-            <a href="add_room.php">Add Room</a>
-            <a href="room.php">Room Management</a>
-            <a href="room_reports.php">Room Reports</a>
-            <a href="mothly_report.php">Monthly Room Reports</a>
+            <a href="add_room.php" class="fas fa-plus-square">Add Room</a>
+            <a href="room.php" class="fas fa-cogs">Room Management</a>
+            <a href="room_reports.php" class="fas fa-chart-bar">Room Reports</a>
+            <a href="mothly_report.php" class="fas fa-calender-alt">Monthly Room Reports</a>
             <?php endif; ?>
         </div>
         <div class="dropdown">
-            <button><?php echo htmlspecialchars($firstName); ?> ▼</button>
+            <button class="fas fa-user"><?php echo htmlspecialchars($firstName); ?> ▼</button>
             <div class="dropdown-content">
-                <a href="profile.php">View Profile</a>
-                <a href="logout.php">Logout</a>
+                <a href="profile.php" class="fas fa-user-circle">View Profile</a>
+                <a href="logout.php" class="fas fa-sign-out-alt">Logout</a>
             </div>
         </div>
     </nav>

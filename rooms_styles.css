@@ -19,12 +19,11 @@
 }
 
 .browse-form {
-    max-width: 600px; /* Adjust the max-width as needed */
-    margin: 50px auto; /* Centers the form horizontally with top and bottom spacing */
-    padding: 20px; /* Adds space inside the form */
-     /* Light background color for the form */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    border-radius: 10px; /* Rounded corners for a modern look */
+    max-width: 600px; 
+    margin: 50px auto; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 10px;
 }
 
 .browse-form h1 {
