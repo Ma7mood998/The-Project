@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $profilePicture = 'default.jpg'; // Default picture if none is uploaded
         if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
             $profilePictureFile = $_FILES['profile_picture'];
-            $targetDir = "../uploads/";
+            $targetDir = "uploads/";
             $targetFile = $targetDir . basename($profilePictureFile["name"]);
             $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
             if (in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {

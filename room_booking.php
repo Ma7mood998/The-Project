@@ -60,6 +60,14 @@ if (isset($_GET['delete_id'])) {
             justify-content: space-between; /* Distribute links and dropdown */
             align-items: center;
         }
+        /* Logo Styling */
+        .logo-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
         .nav-links {
             display: flex;
             gap: 20px; /* Space between links */
@@ -130,17 +138,26 @@ if (isset($_GET['delete_id'])) {
         }
     </style>
 <body>
-<nav class="d-flex justify-content-between align-items-center">
-        <!-- Left-aligned links -->
-        <div class="nav-links d-flex">
-            <a href="home.php">Home</a>
-            <a href="user_room.php">Room Schedule</a>
+<!-- Nav Bar -->
+<nav>
+        <div class="nav-links">
+        <a href="admin.php" style="float: left;">
+            <img src="uploads/rbook.jpg" alt="Site Logo" class="logo-img">
+        </a>
+            <label for="theme-toggle">
+                <input type="checkbox" id="theme-toggle">
+                Dark Mode
+            </label>
+            <a href="my_bookings.php">My Bookings</a>
+            <?php if ($role === 'admin'): ?>
+            <a href="add_room.php">Add Room</a>
+            <a href="room.php">Room Management</a>
+            <a href="room_reports.php">Room Reports</a>
+            <a href="mothly_report.php">Monthly Room Reports</a>
+            <?php endif; ?>
         </div>
-        <!-- Right-aligned dropdown -->
         <div class="dropdown">
-            <button class="btn btn-link text-white text-decoration-none">
-                <?php echo htmlspecialchars($firstName); ?> ▼
-            </button>
+            <button><?php echo htmlspecialchars($firstName); ?> ▼</button>
             <div class="dropdown-content">
                 <a href="profile.php">View Profile</a>
                 <a href="logout.php">Logout</a>

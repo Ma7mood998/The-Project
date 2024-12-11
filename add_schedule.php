@@ -168,6 +168,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        /* Logo Styling */
+        .logo-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+        }
         .footer {
             background-color: black;
             color: white;
@@ -183,9 +191,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 <body>
-<?php
-   require_once('navbar.php');
-   ?>
+    <nav>
+        <div class="nav-links">
+        <a href="admin.php" style="float: left;">
+            <img src="uploads/rbook.jpg" alt="Site Logo" class="logo-img">
+        </a>
+            <label for="theme-toggle">
+                <input type="checkbox" id="theme-toggle">
+                Dark Mode
+            </label>
+            <a href="my_bookings.php">My Bookings</a>
+            <?php if ($role === 'admin'): ?>
+            <a href="add_room.php">Add Room</a>
+            <a href="room.php">Room Management</a>
+            <a href="room_reports.php">Room Reports</a>
+            <a href="mothly_report.php">Monthly Room Reports</a>
+            <?php endif; ?>
+        </div>
+        <div class="dropdown">
+            <button><?php echo htmlspecialchars($firstName); ?> ▼</button>
+            <div class="dropdown-content">
+                <a href="profile.php">View Profile</a>
+                <a href="logout.php">Logout</a>
+            </div>
+        </div>
+    </nav>
 <div class="container mt-4">
     <h2>Room Schedule Manager</h2>
     <?php if (!empty($message)): ?>

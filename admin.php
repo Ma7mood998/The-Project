@@ -42,13 +42,6 @@ if (!isset($_SESSION['welcome_shown'])) {
     <script src="rooms.js"></script>
     <script src="modal.js"></script>
     <style>
-        nav {
-            background-color: #333;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between; /* Distribute links and dropdown */
-            align-items: center;
-        }
         /* Logo Styling */
         .logo-img {
             height: 50px;
@@ -57,6 +50,14 @@ if (!isset($_SESSION['welcome_shown'])) {
             border: 2px solid white;
             cursor: pointer;
         }
+        nav {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between; /* Distribute links and dropdown */
+            align-items: center;
+        }
+    
         .nav-links {
             display: flex;
             gap: 20px; /* Space between links */
@@ -132,16 +133,15 @@ if (!isset($_SESSION['welcome_shown'])) {
 </head>
 <body>
     <!-- Nav Bar -->
-    <nav >
+    <nav>
         <div class="nav-links">
-        <a href="welcome.php" style="float: left;">
+        <a href="admin.php" style="float: left;">
             <img src="uploads/rbook.jpg" alt="Site Logo" class="logo-img">
         </a>
             <label for="theme-toggle">
                 <input type="checkbox" id="theme-toggle">
                 Dark Mode
             </label>
-            <a href="admin.php">Home</a>
             <a href="my_bookings.php">My Bookings</a>
             <?php if ($role === 'admin'): ?>
             <a href="add_room.php">Add Room</a>
@@ -160,7 +160,7 @@ if (!isset($_SESSION['welcome_shown'])) {
     </nav>
 
         <main class="container">
-        <article>
+        <article class="browse-form">
             <h1>Browse Rooms</h1>
             <!-- Dropdown Menu for filtering -->
              
@@ -198,11 +198,11 @@ if (!isset($_SESSION['welcome_shown'])) {
                 <label for="search-room">Search Room:</label>
                 <input type="text" id="search-room" name="room_name" placeholder="Enter room name" />
                 <!-- Button to apply selected filers -->
-                <button type="submit">Apply Filters</button>
+                <button type="submit" class="filter-button">Apply Filters</button>
                 <!-- Button to reset filters -->
-                <button type="button" id="reset-filters" class="secondary">Reset Filters</button>
+                <button type="submit" id="reset-filters" class="filter-button secondary">Reset Filters</button>
             </form>
-            </article>
+        </article>
             
             <article class="hide">
             <!-- Rooms Container to add room info/cards from rooms.js "JavaScript" -->

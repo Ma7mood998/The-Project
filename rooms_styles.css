@@ -1,3 +1,4 @@
+
 #rooms-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -16,6 +17,48 @@
 .room-card:hover {
     transform: scale(1.05);
 }
+
+.browse-form {
+    max-width: 600px; /* Adjust the max-width as needed */
+    margin: 50px auto; /* Centers the form horizontally with top and bottom spacing */
+    padding: 20px; /* Adds space inside the form */
+     /* Light background color for the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    border-radius: 10px; /* Rounded corners for a modern look */
+}
+
+.browse-form h1 {
+    text-align: center;
+}
+
+.browse-form label {
+    display: block;
+    margin-bottom: 1px; /* Space between label and input */
+    font-weight: bold;
+}
+
+.browse-form select,
+.browse-form input[type="text"],
+.browse-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Space between inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+}
+
+.browse-form button {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.browse-form button:hover {
+    background-color: var(--secondary-color);
+}
+
 
 /* Modal Overlay */
 #popupOverlay {

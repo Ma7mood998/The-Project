@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $room_id ? "Update Room" : "Add Room"; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> 
     <style>
         nav {
             background-color: #333;
@@ -239,14 +239,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <nav>
         <div class="nav-links">
-        <a href="welcome.php" style="float: left;">
+        <a href="admin.php" style="float: left;">
             <img src="uploads/rbook.jpg" alt="Site Logo" class="logo-img">
         </a>
             <label for="theme-toggle">
                 <input type="checkbox" id="theme-toggle">
                 Dark Mode
             </label>
-            <a href="admin.php">Home</a>
             <a href="my_bookings.php">My Bookings</a>
             <?php if ($role === 'admin'): ?>
             <a href="add_room.php">Add Room</a>

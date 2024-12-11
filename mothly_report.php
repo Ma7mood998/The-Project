@@ -147,14 +147,13 @@ $months = $allMonths; // Show all months on the x-axis of a chart  even if some 
 <!-- Nav Bar -->
 <nav >
         <div class="nav-links">
-        <a href="welcome.php" style="float: left;">
+        <a href="admin.php" style="float: left;">
             <img src="uploads/rbook.jpg" alt="Site Logo" class="logo-img">
         </a>
             <label for="theme-toggle">
                 <input type="checkbox" id="theme-toggle">
                 Dark Mode
             </label>
-            <a href="admin.php">Home</a>
             <a href="my_bookings.php">My Bookings</a>
             <?php if ($role === 'admin'): ?>
             <a href="add_room.php">Add Room</a>
